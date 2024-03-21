@@ -1,0 +1,73 @@
+{
+	"pages": [{
+			"path": "pages/components/Home",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/components/UserInfo",
+			"style": {
+				"navigationBarTitleText": "用户",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path" : "pages/components/HomeInfo/HomeInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/components/Good",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"borderStyle": "black", //边框颜色
+		"backgroundColor": "#F7F7F7", //背景颜色
+		"color": "#000000", //默认颜色
+		"selectedColor": "#1196db", //选中的颜色
+		"list": [{
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-filling.png",
+				"text": "首页",
+				"pagePath": "pages/components/Home"
+			},
+			{
+				"iconPath": "static/shop.png",
+				"selectedIconPath": "static/shop-filling.png",
+				"text": "商品",
+				"pagePath": "pages/components/Good"
+			},
+			{
+				"iconPath": "static/user.png",
+				"selectedIconPath": "static/user-filling.png",
+				"text": "用户",
+				"pagePath": "pages/components/UserInfo"
+			}
+		]
+	}
+}

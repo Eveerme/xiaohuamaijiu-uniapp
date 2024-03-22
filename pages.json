@@ -1,5 +1,14 @@
 {
-	"pages": [{
+	"pages": [
+		{
+			"path" : "pages/views/Login/Login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "登录",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
 			"path": "pages/components/Home",
 			"style": {
 				"navigationBarTitleText": "首页",

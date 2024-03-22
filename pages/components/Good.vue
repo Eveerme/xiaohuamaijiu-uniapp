@@ -1,5 +1,33 @@
 <template>
 	<view>
+		<view>
+			<uni-search-bar @confirm="search" :focus="true" v-model="searchValue" @cancel="cancel" @clear="clear">
+			</uni-search-bar>
+		</view>
+		<view class="Advanced-Search-area">
+			<uni-grid :column="3" :show-border="false" :square="false">
+				<uni-grid-item>
+					<view class="grid-item-box" style="height: 50rpx;width: 80%;">
+					  <uni-data-select
+						v-model="selectTypeA"
+						:localdata="typeAList"
+						@change="changeTypeA"
+						:clear="false"
+					  ></uni-data-select>
+					</view>
+				</uni-grid-item>
+				<uni-grid-item>
+					<view class="grid-item-box" style="background-color: #00ffff;height: 50rpx;width: 80%;">
+						
+					</view>
+				</uni-grid-item>
+				<uni-grid-item>
+					<view class="grid-item-box" style="background-color: #00ffff;height: 50rpx;width: 80%;">
+						
+					</view>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
 		<view class="ComBox">
 			<div class="ComList" v-for="item in ComListSon" :key="item.id" @click="ToDel(item.id)">
 				<div class="ImgBOX">
@@ -74,7 +102,7 @@
 			}
 		]
 	}])
-	function ToDel(id: string) {
+	function ToDel(id : string) {
 		//参数在跳转页的onLoad(id){ console.log('id为' + id) } 中获取  
 		wx.showToast({
 			title: '将要跳转的详情页id为' + id,
@@ -82,35 +110,35 @@
 			duration: 500
 		});
 	}
-	function getComList(page) {
-		//参数为页数
-		// 将获取的第page页数据合并进原数组   举例
-		// axios.post('/list',{page:page}).then(res=>{
-		// 	if(res.code == 1){ //接口调用成功
-		// 		 this.ComListSon = res.data
-		// 	}else{
-		// 		wx.showToast(
-		// { title: res.mes?res.msg:'信息获取错误',
-		// icon: 'none', duration: 500 });
-		// 	}
-		// 	Array.prototype.push.apply(this.ComList, this.ComListSon);
-		//合并加载更多的数据与源数据.
-		// })
-		//
+	// 搜索
+	const searchValue = ref<string>('');
+	function search() {
+
 	}
-	function onLoad() {
-		this.page = 1
-		this.getComList(1)
+	function cancel() {
+
 	}
-	function onReachBottom() {
-		//下拉触发事件
-		// this.page++;
-		// this.getDefault(this.page);
-		console.log('触发了下拉加载更多的事件')
+	function clear() {
+
+	}
+	const selectTypeA = ref(0)
+	const typeAList = ref([
+		{ value: 0, text: "威士忌" },
+		{ value: 1, text: "乌苏" },
+		{ value: 2, text: "珠江纯生" }
+	])
+	function changeTypeA(ta:any){
+		console.log("选择了A", ta);
 	}
 </script>
 
 <style lang="scss" scoped>
+	.Advanced-Search-area {
+		
+	}
+	.grid-item-box {
+		
+	}
 	.ComBox {
 		width: 690rpx; //根据微信定义设置  如非必要不建议改为100%；
 		padding: 10rpx 30rpx;

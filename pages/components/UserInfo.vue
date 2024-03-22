@@ -5,22 +5,20 @@
 			<view class="top">
 				<view class="center">
 					<view class="center_top">
-						<view class="center_img" @click="WxLogin()">
-							<!-- 这里可以放自己的静态头像 -->
-							<image src="/static/user.png"></image>
+						<view class="center_img">
+							<image :src="userInfo.avatar"></image>
 							<open-data type="userAvatarUrl" class="user_head"></open-data>
 						</view>
 						<view class="center_info">
 							<view class="center_name">
-								<!-- 这里可以放自己的名称图片 -->
-								<view>张三</view>
+								<view>{{ userInfo.userName }}</view>
 							</view>
-							<view class="center_vip">
+<!-- 							<view class="center_vip">
 								<image class="rank_icon" src="/static/VIP.png" />
 								<view class="vip_text">
 									<text>普通会员</text>
 								</view>
-							</view>
+							</view> -->
 						</view>
 					</view>
 				</view>
@@ -46,39 +44,21 @@
 </template>
 
 <script setup lang="ts">
-	function WxLogin() {
-		uni.login({
-			provider: 'weixin',
-			success: function (loginRes) {
-				console.log(loginRes);
-				// // 获取用户信息
-				// uni.getUserInfo({
-				//   provider: 'weixin',
-				//   success: function (infoRes) {
-				//     console.log('用户昵称为：' + infoRes.userInfo.nickName);
-				//   }
-				// });
-				uni.request({
-					url: "http://localhost:8090/userInfos/login",
-					method: "POST",
-					data: {
-						"code": loginRes.code
-					},
-					success: function (res) {
-						console.log(res)
-						uni.setStorage({
-							key: 'userInfo',
-							data: res.data,
-							success: function () {
-								console.log('success');
-							}
-						});
+	
+	import { ref } from 'vue';
+	import { onShow } from '@dcloudio/uni-app'
+	
+	const userInfo = ref<any>({
+		userName: '',
+		avatar: '',
+	})
+	
+	onShow(() => {
+		const user:any = uni.getStorageSync("userInfo");
+		userInfo.value.userName = user.userName;
+		userInfo.value.avatar = user.avatar;
+	})
 
-					}
-				})
-			}
-		});
-	}
 </script>
 
 <style scoped lang="scss">

@@ -1,8 +1,18 @@
 <script>
 	export default {
 		onLaunch: function() {
-			console.warn('当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！')
 			console.log('App Launch')
+			// 检查是否登录，没有登录则跳转到登录页
+			try {
+				const value = uni.getStorageSync('token');
+				if (value) {
+					console.log("token", value);
+				} else {
+					console.log("未登录！");
+				}
+			} catch (e) {
+				console.log("获取token失败，未登录", e);
+			}
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -18,6 +28,7 @@
 	@import '@/uni_modules/uni-scss/index.scss';
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';
+
 	// 设置整个项目的背景色
 	page {
 		background-color: #f5f5f5;

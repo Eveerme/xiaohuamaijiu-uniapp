@@ -57,47 +57,46 @@
 	</view>
 </template>
 
-<script lang="ts">
-export default {
-	data() {
-		return {
-			cover: 'https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg',
-		};
-	},
-	methods: {
-		onClick(e: any) {
-			console.log(e)
-		},
-		actionsClick(text: string) {
-			uni.showToast({
-				title: text,
-				icon: 'none'
-			})
-		}
+<script lang="ts" setup>
+	import { ref } from 'vue';
+
+
+	const cover = ref('https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg');
+
+	function onClick(e : any) {
+		console.log(e)
 	}
-}
+	function actionsClick(text : string) {
+		uni.showToast({
+			title: text,
+			icon: 'none'
+		})
+	}
 </script>
 
 <style scoped>
-.container {
-	overflow: hidden;
-}
-.card-actions {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	height: 45px;
-	border-top: 1px #eee solid;
-}
-.card-actions-item {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-.card-actions-item-text {
-	font-size: 12px;
-	color: #666;
-	margin-left: 5px;
-}
+	.container {
+		overflow: hidden;
+	}
+
+	.card-actions {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		height: 45px;
+		border-top: 1px #eee solid;
+	}
+
+	.card-actions-item {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.card-actions-item-text {
+		font-size: 12px;
+		color: #666;
+		margin-left: 5px;
+	}
 </style>

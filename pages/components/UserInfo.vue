@@ -45,48 +45,40 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
+<script setup lang="ts">
+	function WxLogin() {
+		uni.login({
+			provider: 'weixin',
+			success: function (loginRes) {
+				console.log(loginRes);
+				// // 获取用户信息
+				// uni.getUserInfo({
+				//   provider: 'weixin',
+				//   success: function (infoRes) {
+				//     console.log('用户昵称为：' + infoRes.userInfo.nickName);
+				//   }
+				// });
+				uni.request({
+					url: "http://localhost:8090/userInfos/login",
+					method: "POST",
+					data: {
+						"code": loginRes.code
+					},
+					success: function (res) {
+						console.log(res)
+						uni.setStorage({
+							key: 'userInfo',
+							data: res.data,
+							success: function () {
+								console.log('success');
+							}
+						});
 
+					}
+				})
 			}
-		},
-		computed: {
-
-		},
-		created() {
-
-		},
-		methods: {
-			WxLogin(){
-				uni.login({
-				  provider: 'weixin',
-				  success: function (loginRes) {
-				    console.log(loginRes);
-				    // 获取用户信息
-				    uni.getUserInfo({
-				      provider: 'weixin',
-				      success: function (infoRes) {
-				        console.log('用户昵称为：' + infoRes.userInfo.nickName);
-				      }
-				    });
-					uni.request({
-						url: "http://localhost:8090/userInfos/login",
-						method: "POST",
-						data: {
-							"code": loginRes.code
-						},
-						success:function(res){
-							console.log(res)
-						}
-					})
-				  }
-				});
-			}
-			
-		}
-	};
+		});
+	}
 </script>
 
 <style scoped lang="scss">
